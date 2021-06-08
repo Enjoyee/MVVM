@@ -3,6 +3,7 @@ package com.glimmer.mvvm.config
 import android.util.SparseArray
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModel
+import com.glimmer.uutil.Clicker
 
 object BindingConfig {
 
@@ -11,18 +12,25 @@ object BindingConfig {
     }
 
     class Info {
-        internal var layout: Int = 0
+        internal var layoutId: Int = 0
         internal var vmVariableId: (() -> Int) = { 0 }
         internal var viewModel: (() -> ViewModel?) = { null }
+        internal var clickerVariableId: (() -> Int) = { 0 }
+        internal var clicker: (() -> Clicker?) = { null }
         internal val bindingParams: SparseArray<Any> = SparseArray()
 
         fun layoutId(@LayoutRes layoutId: Int) {
-            layout = layoutId
+            this.layoutId = layoutId
         }
 
         fun viewModel(vmVariableId: Int, viewModel: ViewModel) {
             this.vmVariableId = { vmVariableId }
             this.viewModel = { viewModel }
+        }
+
+        fun clicker(clickerVariableId: Int, clicker: Clicker) {
+            this.clickerVariableId = { clickerVariableId }
+            this.clicker = { clicker }
         }
 
         infix fun <A, B> A.bind(that: B): Pair<A, B> = Pair(this, that)
@@ -32,7 +40,6 @@ object BindingConfig {
                 bindingParams.put(it.first, it.second)
             }
         }
-
 
     }
 

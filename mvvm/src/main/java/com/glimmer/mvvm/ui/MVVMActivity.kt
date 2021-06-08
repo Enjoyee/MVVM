@@ -12,7 +12,7 @@ import kotlin.reflect.KClass
 
 abstract class MVVMActivity<VM : BaseVM, DB : ViewDataBinding> : BaseActivity(), IMvvmActivity {
     /**==========================================================**/
-    val dataBinding: DB by lazy { DataBindingUtil.setContentView(this, bindingConfig.layout) }
+    val dataBinding: DB by lazy { DataBindingUtil.setContentView(this, bindingConfig.layoutId) }
     val vm: VM by lazy { ViewModelProvider(this).get(vMClass().java) }
 
     /**==========================================================**/
@@ -23,6 +23,10 @@ abstract class MVVMActivity<VM : BaseVM, DB : ViewDataBinding> : BaseActivity(),
         // 绑定布局vm
         bindingConfig.viewModel.invoke()?.let { vm ->
             dataBinding.setVariable(bindingConfig.vmVariableId.invoke(), vm)
+        }
+        // 绑定点击
+        bindingConfig.clicker.invoke()?.let { clicker ->
+            dataBinding.setVariable(bindingConfig.clickerVariableId.invoke(), clicker)
         }
         // 绑定xml其他参数
         bindingConfig.bindingParams.forEach { key, value ->

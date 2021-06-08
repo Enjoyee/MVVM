@@ -21,11 +21,23 @@ abstract class MVVMFragment<VM : BaseVM, DB : ViewDataBinding> : BaseFragment(),
     override fun setFragmentContentView() {
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, bindingConfig.layout, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, bindingConfig.layoutId, container, false)
         binding.lifecycleOwner = this
         // 绑定布局vm
-        binding.setVariable(bindingConfig.vmVariableId.invoke(), bindingConfig.viewModel.invoke())
+        binding.setVariable(
+            bindingConfig.vmVariableId.invoke(),
+            bindingConfig.viewModel.invoke()
+        )
+        // 绑定点击
+        binding.setVariable(
+            bindingConfig.clickerVariableId.invoke(),
+            bindingConfig.clicker.invoke()
+        )
         // 绑定xml其他参数
         bindingConfig.bindingParams.forEach { key, value ->
             binding.setVariable(key, value)

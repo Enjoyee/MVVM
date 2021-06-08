@@ -57,7 +57,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, Clicker {
     }
 
     internal open fun setActivityContentView() {
-        setContentView(bindingConfig.layout)
+        setContentView(bindingConfig.layoutId)
     }
 
     /**==========================================================**/

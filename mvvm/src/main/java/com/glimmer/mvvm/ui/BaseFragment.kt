@@ -54,7 +54,7 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
         clazz?.let {
             val field = it.getDeclaredField("mContentLayoutId")
             field.isAccessible = true
-            field.set(this, bindingConfig.layout)
+            field.set(this, bindingConfig.layoutId)
         } ?: throw ClassNotFoundException("fragment init layout error")
     }
 

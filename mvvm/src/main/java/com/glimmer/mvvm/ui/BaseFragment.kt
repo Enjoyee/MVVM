@@ -32,7 +32,7 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
      */
     val handler by lazy { KHandler(this) }
     val fragment: BaseFragment by lazy { this }
-    lateinit var bindActivity: FragmentActivity
+    lateinit var bindActivity: BaseActivity
 
     /**
      * 是否加载
@@ -70,7 +70,7 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        bindActivity = context as FragmentActivity
+        bindActivity = context as BaseActivity
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
@@ -138,14 +138,14 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
      * 状态栏字体是否黑色模式
      */
     open fun statusBarMode(blackFont: Boolean = false) {
-        (bindActivity as? BaseActivity)?.statusBarMode(blackFont)
+        bindActivity.statusBarMode(blackFont)
     }
 
     /**
      * 是否设置view距离状态栏高度
      */
     fun addViewMarginStatusBar(view: View) {
-        (bindActivity as? BaseActivity)?.addViewMarginStatusBar(view)
+        bindActivity.addViewMarginStatusBar(view)
     }
 
     override fun onDestroyView() {

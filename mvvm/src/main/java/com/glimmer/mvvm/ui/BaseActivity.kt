@@ -33,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, Clicker {
      * 防止内存泄漏Handler
      */
     val handler by lazy { KHandler(this) }
-    val activity: AppCompatActivity by lazy { this }
+    val activity: BaseActivity by lazy { this }
     var context: Context? = null
 
     /**

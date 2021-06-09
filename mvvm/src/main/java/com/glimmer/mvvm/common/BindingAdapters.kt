@@ -62,10 +62,22 @@ object BindingAdapters {
         resId?.let { view.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0) }
     }
 
+    @BindingAdapter("topIcon")
+    @JvmStatic
+    fun topIcon(view: TextView, @DrawableRes resId: Int?) {
+        resId?.let { view.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0) }
+    }
+
     @BindingAdapter("rightIcon")
     @JvmStatic
     fun rightIcon(view: TextView, @DrawableRes resId: Int?) {
         resId?.let { view.setCompoundDrawablesWithIntrinsicBounds(0, 0, resId, 0) }
+    }
+
+    @BindingAdapter("bottomIcon")
+    @JvmStatic
+    fun bottomIcon(view: TextView, @DrawableRes resId: Int?) {
+        resId?.let { view.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, resId) }
     }
 
     @BindingAdapter("height")

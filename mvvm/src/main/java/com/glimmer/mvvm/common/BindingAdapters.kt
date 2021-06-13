@@ -11,6 +11,7 @@ import androidx.databinding.BindingAdapter
 import coil.load
 import com.glimmer.uutil.doWithTry
 import com.glimmer.uutil.getColorById
+import com.google.android.material.imageview.ShapeableImageView
 
 object BindingAdapters {
 
@@ -92,6 +93,12 @@ object BindingAdapters {
     @BindingAdapter("netImg")
     @JvmStatic
     fun netImg(view: ImageView, url: String?) {
+        url?.let { view.load(url) }
+    }
+
+    @BindingAdapter("netImg")
+    @JvmStatic
+    fun netImg(view: ShapeableImageView, url: String?) {
         url?.let { view.load(url) }
     }
 

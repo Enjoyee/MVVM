@@ -15,6 +15,7 @@
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
         <item name="android:maxLength">8</item>
+        <item name="android:drawablePadding">6dp</item>
     </style>
 
     <style name="toolBarRightTv">
@@ -23,6 +24,7 @@
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
         <item name="android:maxLength">8</item>
+        <item name="android:drawablePadding">6dp</item>
     </style>
 
 </resources>

@@ -41,6 +41,7 @@
 
         <TextView
             android:id="@id/tvLeft"
+            style="@style/toolBarLeftTv"
             leftIcon="@{bean.leftIcon}"
             tvColor="@{bean.leftColor}"
             android:layout_width="wrap_content"
@@ -58,6 +59,7 @@
 
         <TextView
             android:id="@id/tvRight"
+            style="@style/toolBarRightTv"
             rightIcon="@{bean.rightIcon}"
             tvColor="@{bean.rightColor}"
             android:layout_width="wrap_content"

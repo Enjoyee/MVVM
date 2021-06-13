@@ -8,6 +8,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
+import coil.load
 import com.glimmer.uutil.doWithTry
 import com.glimmer.uutil.getColorById
 
@@ -86,6 +87,12 @@ object BindingAdapters {
         size?.let {
             view.layoutParams.height = size
         }
+    }
+
+    @BindingAdapter("netImg")
+    @JvmStatic
+    fun netImg(view: ImageView, url: String?) {
+        url?.let { view.load(url) }
     }
 
 }

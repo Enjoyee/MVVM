@@ -27,6 +27,7 @@ object Hammer {
             showLog(mConfig.mShowLog)
             okHttp(mConfig.mBuildOkHttp)
             retrofit(mConfig.mBuildRetrofit)
+
         }
         // log
         KLog.loggable(mConfig.mShowLog.invoke()).logTag(mConfig.mLogTag.invoke()).buildLog()
@@ -39,6 +40,7 @@ object Hammer {
         internal var mShowApiLoading: (() -> Boolean) = { true }
         internal var mLogTag: (() -> String) = { "Hammer" }
         internal var mBaseUrl: (() -> String) = { "https://github.com/" }
+        internal var mHeader: (() -> (Map<String, String>))? = null
         internal var mBuildOkHttp: ((OkHttpClient.Builder) -> OkHttpClient.Builder)? = null
         internal var mBuildRetrofit: ((Retrofit.Builder) -> Retrofit.Builder)? = null
 
@@ -64,6 +66,10 @@ object Hammer {
 
         fun baseUrl(baseUrl: (() -> String)) {
             mBaseUrl = baseUrl
+        }
+
+        fun putHeaders(header: () -> (Map<String, String>)) {
+            mHeader = header
         }
 
         fun okHttp(builder: ((OkHttpClient.Builder) -> OkHttpClient.Builder)?) {

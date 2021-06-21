@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.glimmer.mvvm.R
 import com.glimmer.mvvm.view.IMvvmActivity
 import com.glimmer.mvvm.viewmodel.BaseVM
+import com.glimmer.uutil.toastShort
 import kotlin.reflect.KClass
 
 abstract class MVVMActivity<VM : BaseVM, DB : ViewDataBinding> : BaseActivity(), IMvvmActivity {
@@ -53,5 +54,23 @@ abstract class MVVMActivity<VM : BaseVM, DB : ViewDataBinding> : BaseActivity(),
     }
 
     open fun toolBarRightClick(v: View) {}
+
+    override fun dataObserver() {
+        super.dataObserver()
+        vm.apiException.observe(this, { err ->
+            apiRquestErr(err)
+        })
+        vm.apiLoading.observe(this, { loading ->
+            if (loading) {
+                showLoadingDialog()
+            } else {
+                dismissLoadingDialog()
+            }
+        })
+    }
+
+    open fun apiRquestErr(err: Throwable) {
+        toastShort(err.message)
+    }
 
 }

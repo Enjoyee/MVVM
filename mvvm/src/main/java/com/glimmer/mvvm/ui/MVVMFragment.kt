@@ -10,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.glimmer.mvvm.view.IMvvmFragment
 import com.glimmer.mvvm.viewmodel.BaseVM
+import com.glimmer.uutil.toastShort
 import kotlin.reflect.KClass
 
 abstract class MVVMFragment<VM : BaseVM, DB : ViewDataBinding> : BaseFragment(), IMvvmFragment {
@@ -48,6 +49,24 @@ abstract class MVVMFragment<VM : BaseVM, DB : ViewDataBinding> : BaseFragment(),
     override fun onInit() {
         super.onInit()
         dataObserver()
+    }
+
+    override fun dataObserver() {
+        super.dataObserver()
+        vm.apiException.observe(this, { err ->
+            apiRquestErr(err)
+        })
+        vm.apiLoading.observe(this, { loading ->
+            if (loading) {
+                showLoadingDialog()
+            } else {
+                dismissLoadingDialog()
+            }
+        })
+    }
+
+    open fun apiRquestErr(err: Throwable) {
+        bindActivity.toastShort(err.message)
     }
 
     /**==========================================================**/

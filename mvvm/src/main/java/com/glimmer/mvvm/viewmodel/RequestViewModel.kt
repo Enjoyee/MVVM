@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.glimmer.requestdsl.request.APIDsl
 
 open class RequestViewModel : ViewModel() {
-    private val apiException = MutableLiveData<Throwable>()
-    private val apiLoading = MutableLiveData<Boolean>()
+    internal val apiException = MutableLiveData<Throwable>()
+    internal val apiLoading = MutableLiveData<Boolean>()
 
     /*=======================================================================*/
     private fun <Response> api(apiDSL: APIDsl<Response>.() -> Unit) {

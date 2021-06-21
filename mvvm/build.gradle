@@ -56,7 +56,7 @@ dependencies {
     // recyclerview
     api 'androidx.recyclerview:recyclerview:1.2.1'
     ////////////////////////////////////////////////////////////////////////
-    api 'com.github.Enjoyee:RequestDSL:1.0.0'
+    api 'com.github.Enjoyee:RequestDSL:1.0.1'
     implementation 'com.github.Enjoyee:AndroidUtils:1.0.1'
     ////////////////////////////////////////////////////////////////////////
     // kt图片加载

@@ -24,10 +24,10 @@ object Hammer {
         mConfig = MVVMConfig().also(config)
         // net request
         RequestDSL.init(ContextProvider.mApplication, mConfig.mBaseUrl.invoke()) {
-            showLog(mConfig.mShowLog)
+            showApiLog(mConfig.mShowLog)
             okHttp(mConfig.mBuildOkHttp)
             retrofit(mConfig.mBuildRetrofit)
-
+            putHeader(mConfig.mHeader)
         }
         // log
         KLog.loggable(mConfig.mShowLog.invoke()).logTag(mConfig.mLogTag.invoke()).buildLog()

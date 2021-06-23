@@ -37,7 +37,12 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
     /**
      * 是否需要设置状态栏
      */
-    internal var isNeedSetStatusBar = true
+    var isNeedSetStatusBar = true
+
+    /**
+     * 状态栏颜色
+     */
+    var blackFont = false
 
     /**
      * 是否加载
@@ -142,9 +147,9 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
     /**
      * 状态栏字体是否黑色模式
      */
-    open fun statusBarMode(blackFont: Boolean = false) {
+    private fun statusBarMode() {
         if (isNeedSetStatusBar) {
-            bindActivity.statusBarMode(blackFont)
+            bindActivity.blackFont = blackFont
         }
     }
 

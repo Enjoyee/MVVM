@@ -37,6 +37,11 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, Clicker {
     var context: Context? = null
 
     /**
+     * 状态栏颜色
+     */
+    var blackFont = false
+
+    /**
      * 忽略不需要过滤快速点击的view
      */
     private val ignoreMultiClickViewArr = SparseArray<View>()
@@ -122,7 +127,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, Clicker {
     /**
      * 状态栏字体是否黑色模式
      */
-    open fun statusBarMode(blackFont: Boolean = false) {
+    private fun statusBarMode() {
         BarUtils.setStatusBarLightMode(this, blackFont)
     }
 

@@ -127,7 +127,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, Clicker {
     /**
      * 状态栏字体是否黑色模式
      */
-    internal fun refreshStatusBarMode() {
+    fun refreshStatusBarMode() {
         BarUtils.setStatusBarLightMode(this, blackFont)
     }
 

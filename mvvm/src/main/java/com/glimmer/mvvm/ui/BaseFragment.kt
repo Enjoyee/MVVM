@@ -6,7 +6,6 @@ import android.util.SparseArray
 import android.view.View
 import androidx.core.util.containsValue
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import com.glimmer.mvvm.common.throttleLast
 import com.glimmer.mvvm.config.BindingConfig
 import com.glimmer.mvvm.view.IFragment
@@ -150,8 +149,12 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
     private fun statusBarMode() {
         if (isNeedSetStatusBar) {
             bindActivity.blackFont = blackFont
-            bindActivity.refreshStatusBarMode()
+            refreshStatusBarMode()
         }
+    }
+
+    fun refreshStatusBarMode() {
+        bindActivity.refreshStatusBarMode()
     }
 
     /**

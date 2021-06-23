@@ -39,7 +39,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, Clicker {
     /**
      * 状态栏颜色
      */
-    var blackFont = false
+    open var blackFont = false
 
     /**
      * 忽略不需要过滤快速点击的view

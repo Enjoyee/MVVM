@@ -37,12 +37,12 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
     /**
      * 是否需要设置状态栏
      */
-    var isNeedSetStatusBar = true
+    open var isNeedSetStatusBar = true
 
     /**
      * 状态栏颜色
      */
-    var blackFont = false
+    open var blackFont = false
 
     /**
      * 是否加载

@@ -148,12 +148,12 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
      */
     private fun statusBarMode() {
         if (isNeedSetStatusBar) {
-            bindActivity.blackFont = blackFont
             refreshStatusBarMode()
         }
     }
 
     fun refreshStatusBarMode() {
+        bindActivity.blackFont = blackFont
         bindActivity.refreshStatusBarMode()
     }
 

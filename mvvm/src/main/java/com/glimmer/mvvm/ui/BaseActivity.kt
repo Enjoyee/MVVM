@@ -68,7 +68,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, Clicker {
     /**==========================================================**/
     private fun setStatusBar() {
         BarUtils.transparentStatusBar(this)
-        statusBarMode()
+        refreshStatusBarMode()
     }
 
     override fun onInit() {
@@ -127,7 +127,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, Clicker {
     /**
      * 状态栏字体是否黑色模式
      */
-    private fun statusBarMode() {
+    internal fun refreshStatusBarMode() {
         BarUtils.setStatusBarLightMode(this, blackFont)
     }
 

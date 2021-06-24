@@ -3,19 +3,28 @@ package com.glimmer.mvvm.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.glimmer.mvvm.bean.BeanErr
+import com.glimmer.mvvm.bean.IResponse
 import com.glimmer.requestdsl.request.APIDsl
+import com.glimmer.requestdsl.request.RequestDSL
+import kotlin.reflect.KClass
 
 open class RequestViewModel : ViewModel() {
-    internal val apiException = MutableLiveData<Throwable>()
+    internal val apiException = MutableLiveData<BeanErr>()
     internal val apiLoading = MutableLiveData<Boolean>()
 
     /*=======================================================================*/
-    private fun <Response> api(apiDSL: APIDsl<Response>.() -> Unit) {
+    fun <IApiService : Any> createApiService(iApiService: KClass<IApiService>): IApiService {
+        return RequestDSL.createApiService(iApiService.java)
+    }
+
+    /*=======================================================================*/
+    private fun <Response : IResponse> api(apiDSL: APIDsl<Response>.() -> Unit) {
         APIDsl<Response>().apply(apiDSL).launch(viewModelScope)
     }
 
     /*=======================================================================*/
-    protected fun <Response> apiDsl(apiDSL: APIDsl<Response>.() -> Unit) {
+    protected fun <Response : IResponse> apiRequest(apiDSL: APIDsl<Response>.() -> Unit) {
         api<Response> {
             onStart {
                 apiLoading.value = true
@@ -27,12 +36,16 @@ open class RequestViewModel : ViewModel() {
             }
 
             onResponse {
-                APIDsl<Response>().apply(apiDSL).onResponse?.invoke(it)
+                if (it.success()) {
+                    APIDsl<Response>().apply(apiDSL).onResponse?.invoke(it)
+                } else {
+                    apiException.value = BeanErr(it.reCode(), err = it.errMsg())
+                    APIDsl<Response>().apply(apiDSL).onError?.invoke(Exception(it.errMsg()))
+                }
             }
 
             onError { error ->
-                apiLoading.value = false
-                apiException.value = error
+                apiException.value = BeanErr(null, err = error.localizedMessage)
                 APIDsl<Response>().apply(apiDSL).onError?.invoke(error)
             }
 

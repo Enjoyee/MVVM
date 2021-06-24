@@ -58,19 +58,27 @@ abstract class MVVMActivity<VM : BaseVM, DB : ViewDataBinding> : BaseActivity(),
     override fun dataObserver() {
         super.dataObserver()
         vm.apiException.observe(this, { err ->
-            apiRquestErr(err)
+            apiRquestErr(err.code, err.err)
         })
         vm.apiLoading.observe(this, { loading ->
             if (loading) {
-                showLoadingDialog()
+                apiLoading()
             } else {
-                dismissLoadingDialog()
+                apiFinish()
             }
         })
     }
 
-    open fun apiRquestErr(err: Throwable) {
-        toastShort(err.message)
+    open fun apiLoading() {
+        showLoadingDialog()
+    }
+
+    open fun apiFinish() {
+        dismissLoadingDialog()
+    }
+
+    open fun apiRquestErr(code: Int?, err: String?) {
+        toastShort(err)
     }
 
 }

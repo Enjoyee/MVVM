@@ -1,5 +1,6 @@
 package com.glimmer.mvvm.common
 
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.ImageView
@@ -60,26 +61,26 @@ object BindingAdapters {
 
     @BindingAdapter("leftIcon")
     @JvmStatic
-    fun leftIcon(view: TextView, @DrawableRes resId: Int?) {
-        resId?.let { view.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0) }
+    fun leftIcon(view: TextView, drawable: Drawable?) {
+        drawable?.let { view.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null) }
     }
 
     @BindingAdapter("topIcon")
     @JvmStatic
-    fun topIcon(view: TextView, @DrawableRes resId: Int?) {
-        resId?.let { view.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0) }
+    fun topIcon(view: TextView, drawable: Drawable?) {
+        drawable?.let { view.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null) }
     }
 
     @BindingAdapter("rightIcon")
     @JvmStatic
-    fun rightIcon(view: TextView, @DrawableRes resId: Int?) {
-        resId?.let { view.setCompoundDrawablesWithIntrinsicBounds(0, 0, resId, 0) }
+    fun rightIcon(view: TextView, drawable: Drawable?) {
+        drawable?.let { view.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null) }
     }
 
     @BindingAdapter("bottomIcon")
     @JvmStatic
-    fun bottomIcon(view: TextView, @DrawableRes resId: Int?) {
-        resId?.let { view.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, resId) }
+    fun bottomIcon(view: TextView, drawable: Drawable?) {
+        drawable?.let { view.setCompoundDrawablesWithIntrinsicBounds(null, null, null, drawable) }
     }
 
     @BindingAdapter("height")

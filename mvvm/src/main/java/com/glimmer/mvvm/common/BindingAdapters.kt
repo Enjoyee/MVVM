@@ -65,10 +65,22 @@ object BindingAdapters {
         drawable?.let { view.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null) }
     }
 
+    @BindingAdapter("leftResIcon")
+    @JvmStatic
+    fun leftResIcon(view: TextView, res: Int?) {
+        res?.let { view.setCompoundDrawablesWithIntrinsicBounds(res, 0, 0, 0) }
+    }
+
     @BindingAdapter("topIcon")
     @JvmStatic
     fun topIcon(view: TextView, drawable: Drawable?) {
         drawable?.let { view.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null) }
+    }
+
+    @BindingAdapter("topResIcon")
+    @JvmStatic
+    fun topResIcon(view: TextView, res: Int?) {
+        res?.let { view.setCompoundDrawablesWithIntrinsicBounds(0, res, 0, 0) }
     }
 
     @BindingAdapter("rightIcon")
@@ -77,10 +89,22 @@ object BindingAdapters {
         drawable?.let { view.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null) }
     }
 
+    @BindingAdapter("rightResIcon")
+    @JvmStatic
+    fun rightResIcon(view: TextView, res: Int?) {
+        res?.let { view.setCompoundDrawablesWithIntrinsicBounds(0, 0, res, 0) }
+    }
+
     @BindingAdapter("bottomIcon")
     @JvmStatic
     fun bottomIcon(view: TextView, drawable: Drawable?) {
         drawable?.let { view.setCompoundDrawablesWithIntrinsicBounds(null, null, null, drawable) }
+    }
+
+    @BindingAdapter("bottomResIcon")
+    @JvmStatic
+    fun bottomResIcon(view: TextView, res: Int?) {
+        res?.let { view.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, res) }
     }
 
     @BindingAdapter("height")

@@ -5,6 +5,7 @@ import androidx.core.util.forEach
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.blankj.utilcode.util.ToastUtils
 import com.glimmer.mvvm.R
 import com.glimmer.mvvm.view.IMvvmActivity
 import com.glimmer.mvvm.viewmodel.BaseVM
@@ -78,7 +79,7 @@ abstract class MVVMActivity<VM : BaseVM, DB : ViewDataBinding> : BaseActivity(),
     }
 
     open fun apiRquestErr(code: Int?, err: String?) {
-        toastShort(err)
+        ToastUtils.showLong(err)
     }
 
 }

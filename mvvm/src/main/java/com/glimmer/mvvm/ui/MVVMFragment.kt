@@ -8,9 +8,9 @@ import androidx.core.util.forEach
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.blankj.utilcode.util.ToastUtils
 import com.glimmer.mvvm.view.IMvvmFragment
 import com.glimmer.mvvm.viewmodel.BaseVM
-import com.glimmer.uutil.toastShort
 import kotlin.reflect.KClass
 
 abstract class MVVMFragment<VM : BaseVM, DB : ViewDataBinding> : BaseFragment(), IMvvmFragment {
@@ -74,7 +74,7 @@ abstract class MVVMFragment<VM : BaseVM, DB : ViewDataBinding> : BaseFragment(),
     }
 
     open fun apiRquestErr(code: Int?, err: String?) {
-        bindActivity.toastShort(err)
+        ToastUtils.showLong(err)
     }
 
     /**==========================================================**/

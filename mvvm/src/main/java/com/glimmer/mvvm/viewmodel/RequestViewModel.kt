@@ -39,7 +39,7 @@ open class RequestViewModel : ViewModel() {
                 if (it.success()) {
                     APIDsl<Response>().apply(apiDSL).onResponse?.invoke(it)
                 } else {
-                    APIDsl<Response>().apply(apiDSL).onError?.invoke(Exception(it.errMsg()))
+                    apiException.value = BeanErr(it.reCode(), err = it.errMsg())
                 }
             }
 

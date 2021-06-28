@@ -5,6 +5,7 @@ import androidx.core.util.forEach
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.blankj.utilcode.util.ToastUtils
 import com.glimmer.mvvm.R
 import com.glimmer.mvvm.view.IMvvmActivity
@@ -16,6 +17,9 @@ abstract class MVVMActivity<VM : BaseVM, DB : ViewDataBinding> : BaseActivity(),
     /**==========================================================**/
     val binding: DB by lazy { DataBindingUtil.setContentView(this, bindingConfig.layoutId) }
     val vm: VM by lazy { ViewModelProvider(this).get(vMClass().java) }
+
+    /**==========================================================**/
+    fun providerVM(cls: KClass<VM>, owner: ViewModelStoreOwner = this) = ViewModelProvider(owner).get(cls.java)
 
     /**==========================================================**/
     override fun setActivityContentView() {

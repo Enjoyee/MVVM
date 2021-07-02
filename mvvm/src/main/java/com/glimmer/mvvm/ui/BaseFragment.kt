@@ -11,7 +11,6 @@ import com.glimmer.mvvm.config.BindingConfig
 import com.glimmer.mvvm.view.IFragment
 import com.glimmer.uutil.Clicker
 import com.glimmer.uutil.KHandler
-import com.glimmer.uutil.KLog
 import java.util.concurrent.TimeUnit
 
 abstract class BaseFragment : Fragment(), IFragment, Clicker {
@@ -73,7 +72,6 @@ abstract class BaseFragment : Fragment(), IFragment, Clicker {
         if (!isLoaded && !isHidden) {
             onInit()
             isLoaded = true
-            KLog.d(message = "lazyInit Fragment")
         }
     }
 

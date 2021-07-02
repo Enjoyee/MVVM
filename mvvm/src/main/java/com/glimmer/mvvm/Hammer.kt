@@ -1,6 +1,7 @@
 package com.glimmer.mvvm
 
 import android.app.Application
+import android.util.Log
 import com.glimmer.mvvm.lifecycle.ActivityLifecycle
 import com.glimmer.mvvm.lifecycle.ApplicationLifecycle
 import com.glimmer.mvvm.provider.ContextProvider
@@ -8,6 +9,7 @@ import com.glimmer.requestdsl.request.RequestDSL
 import com.glimmer.uutil.KLog
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import timber.log.Timber
 
 object Hammer {
     internal lateinit var mConfig: MVVMConfig
@@ -31,6 +33,19 @@ object Hammer {
         }
         // log
         KLog.loggable(mConfig.mShowLog.invoke()).logTag(mConfig.mLogTag.invoke()).buildLog()
+        if (Timber.forest().isEmpty()) {
+            if (mConfig.mShowLog.invoke()) {
+                Timber.plant(Timber.DebugTree())
+            } else {
+                Timber.plant(object : Timber.Tree() {
+                    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+                        if (priority >= Log.ERROR) {
+                            Timber.tag(tag).e(t)
+                        }
+                    }
+                })
+            }
+        }
     }
 
     class MVVMConfig {

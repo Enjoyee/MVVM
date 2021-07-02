@@ -16,19 +16,6 @@ internal class ApplicationDelegateImpl(private val application: Application) : I
 
     init {
         MMKV.initialize(application)
-        if (Timber.forest().isEmpty()) {
-            if (Hammer.mConfig.mShowLog.invoke()) {
-                Timber.plant(Timber.DebugTree())
-            } else {
-                Timber.plant(object : Timber.Tree() {
-                    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-                        if (priority >= Log.ERROR) {
-                            Timber.tag(tag).e(t)
-                        }
-                    }
-                })
-            }
-        }
     }
 
     override fun getViewModelStore(): ViewModelStore = mViewModelStore

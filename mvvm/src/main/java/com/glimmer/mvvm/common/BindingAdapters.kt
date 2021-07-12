@@ -116,10 +116,14 @@ object BindingAdapters {
         }
     }
 
-    @BindingAdapter("netImg")
+    @BindingAdapter(value = ["netImg", "placeDrawableId"], requireAll = false)
     @JvmStatic
-    fun netImg(view: ImageView, url: String?) {
-        url?.let { view.load(url) }
+    fun netImg(view: ImageView, url: String?, placeholder: Int?) {
+        url?.let {
+            view.load(url) {
+                placeholder?.let { placeholder(it) }
+            }
+        }
     }
 
     @BindingAdapter("localImg")
@@ -134,10 +138,12 @@ object BindingAdapters {
         uri?.let { view.load(uri) }
     }
 
-    @BindingAdapter("netImg")
+    @BindingAdapter(value = ["netImg", "placeDrawableId"], requireAll = false)
     @JvmStatic
-    fun netImg(view: ShapeableImageView, url: String?) {
-        url?.let { view.load(url) }
+    fun netImg(view: ShapeableImageView, url: String?, placeholder: Int?) {
+        view.load(url) {
+            placeholder?.let { placeholder(it) }
+        }
     }
 
 }

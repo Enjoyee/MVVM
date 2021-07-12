@@ -7,6 +7,7 @@ import com.glimmer.mvvm.bean.BeanErr
 import com.glimmer.mvvm.bean.IResponse
 import com.glimmer.requestdsl.request.APIDsl
 import com.glimmer.requestdsl.request.RequestDSL
+import java.lang.Exception
 import kotlin.reflect.KClass
 
 open class RequestViewModel : ViewModel() {
@@ -40,6 +41,7 @@ open class RequestViewModel : ViewModel() {
                     APIDsl<Response>().apply(apiDSL).onResponse?.invoke(it)
                 } else {
                     apiException.value = BeanErr(it.reCode(), err = it.errMsg())
+                    APIDsl<Response>().apply(apiDSL).onError?.invoke(Exception(it.errMsg()))
                 }
             }
 
